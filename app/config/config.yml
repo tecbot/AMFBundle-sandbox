@@ -1,0 +1,24 @@
+framework:
+    charset: UTF-8
+    csrf_protection:
+      enabled: false
+    error_handler: null
+    router:
+      resource: "%kernel.root_dir%/config/routing.yml"
+    templating:
+      engine: twig
+    validation:
+      enabled: true
+      annotations: true
+    session:
+      default_locale: en
+      lifetime: 3600
+      auto_start: true
+
+## Twig Configuration
+twig:
+    debug: %kernel.debug%
+    strict_variables: %kernel.debug%
+
+imports:
+    - { resource: amf.yml }

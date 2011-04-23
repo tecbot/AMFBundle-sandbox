@@ -1,0 +1,21 @@
+#!/bin/sh
+
+show_run()
+{
+    echo "    $ $*"
+    result=$($*)
+    if [ $? -ne  0 ]; then
+        echo "--- FAIL"
+        echo $result
+        exit 1
+    fi
+}
+
+echo "\n--- Update vendors"
+show_run "bin/vendors"
+
+echo "\n--- Refresh Applications"
+show_run "bin/refresh"
+
+echo "\n--- Creating assets symlinks"
+show_run php app/console assets:install web --symlink

@@ -1,0 +1,11 @@
+.idea/*
+.settings/*
+app/bootstrap*
+app/cache/*
+app/config/config_local.yml
+app/logs/*
+flash/.settings/*
+flash/bin/*
+flash/.project
+vendor/
+web/bundles/

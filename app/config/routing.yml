@@ -1,0 +1,3 @@
+_demo:
+    pattern:  /
+    defaults: { _controller: AcmeAmfBundle:Demo:index }

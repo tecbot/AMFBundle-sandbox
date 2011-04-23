@@ -1,0 +1,15 @@
+#!/bin/sh
+
+for application in app; do
+    echo "\n------------------- $application -----------------"
+    echo "\nBuilding bootstrap"
+    php bin/build_bootstrap_$application.php
+    echo "Remove cache dir"
+    rm -r $application/cache/*
+    chmod -R 777 $application/cache/
+    echo "Warmup cache"
+    php $application/console cache:warmup
+    php $application/console -e=prod cache:warmup
+    echo "Raise cache permissions"
+    chmod -R 777 $application/cache/
+done

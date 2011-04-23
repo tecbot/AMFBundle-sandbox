@@ -1,0 +1,8 @@
+tecbot_amf:
+  # Services
+  services:
+    DemoService: AcmeAmfBundle:Demo
+
+  # Class mapping
+  mappings:
+    MessageVO: Acme\AmfBundle\AMF\VO\MessageVO

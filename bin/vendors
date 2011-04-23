@@ -1,0 +1,61 @@
+#!/bin/sh
+
+DIR=`php -r "echo dirname(dirname(realpath('$0')));"`
+VENDOR="$DIR/vendor"
+VERSION=`cat "$DIR/VERSION"`
+
+# initialization
+if [ "$1" = "--reinstall" -o "$2" = "--reinstall" ]; then
+    rm -rf $VENDOR
+fi
+
+# just the latest revision
+CLONE_OPTIONS=''
+if [ "$1" = "--min" -o "$2" = "--min" ]; then
+    CLONE_OPTIONS='--depth 1'
+fi
+
+mkdir -p "$VENDOR" && cd "$VENDOR"
+
+##
+# @param destination directory (e.g. "doctrine")
+# @param URL of the git remote (e.g. git://github.com/doctrine/doctrine2.git)
+# @param revision to point the head (e.g. origin/HEAD)
+#
+install_git()
+{
+    INSTALL_DIR=$1
+    SOURCE_URL=$2
+    REV=$3
+
+    if [ -z $REV ]; then
+        REV=origin/HEAD
+    fi
+
+    if [ ! -d $INSTALL_DIR ]; then
+        git clone $CLONE_OPTIONS $SOURCE_URL $INSTALL_DIR
+    fi
+
+    cd $INSTALL_DIR
+    git fetch origin
+    git reset --hard $REV
+    cd ..
+}
+
+# Symfony
+install_git symfony git://github.com/symfony/symfony.git
+
+# Twig
+install_git twig git://github.com/fabpot/Twig.git
+
+# Monolog
+install_git monolog git://github.com/Seldaek/monolog.git
+
+# Zend
+install_git zend git://github.com/zendframework/zf2.git
+
+# AMFBundle
+mkdir -p bundles/Tecbot
+cd bundles/Tecbot
+install_git AMFBundle git://github.com/tecbot/AMFBundle.git
+cd ../..
