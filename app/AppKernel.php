@@ -17,8 +17,6 @@ class AppKernel extends AmfKernel
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
-            new Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle(),
-            new FOS\FacebookBundle\FOSFacebookBundle(),
             new Tecbot\AMFBundle\TecbotAMFBundle(),
             new Acme\AmfBundle\AcmeAmfBundle(),
         );
