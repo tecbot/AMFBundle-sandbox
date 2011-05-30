@@ -9,4 +9,5 @@ use Tecbot\AMFBundle\Amf\Request;
 
 //$kernel = new AppCache(new AppKernel('prod', false));
 $kernel = new AppKernel('prod', false);
+$kernel->loadClassCache();
 $kernel->handleAmf(Request::createFromGlobals())->send();

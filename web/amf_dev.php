@@ -12,4 +12,5 @@ require_once __DIR__.'/../app/AppKernel.php';
 use Tecbot\AMFBundle\Amf\Request;
 
 $kernel = new AppKernel('dev', true);
+$kernel->loadClassCache();
 $kernel->handleAmf(Request::createFromGlobals())->send();

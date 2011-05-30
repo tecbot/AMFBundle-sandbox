@@ -1,12 +1,21 @@
-Sandbox for the [AMFBundle][1].
+Sandbox for the [AMFBundle][1]
+========================
 
-Installation
-------------
+Installation from Git
+---------------------
 
-Run the following script:
+Run the following commands:
 
- * `bin/reload`
- 
+    git http://github.com/tecbot/AMFBundle-sandbox.git
+    cd AMFBundle-sandbox
+    rm -rf .git
+    php bin/vendors.php
+
+.. note::
+
+    AMFBundle-sandbox does/can not use git submodules as you should not keep the
+    `.git` directory.
+
 Configuration
 -------------
 

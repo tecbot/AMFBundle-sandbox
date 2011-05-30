@@ -1,15 +1,16 @@
+imports:
+    - { resource: amf.yml }
+
 framework:
     charset: UTF-8
-    csrf_protection:
-      enabled: false
-    error_handler: null
+    secret: ThisTokenIsNotSoSecretChangeIt
+    csrf_protection: true
     router:
       resource: "%kernel.root_dir%/config/routing.yml"
     templating:
       engine: twig
     validation:
-      enabled: true
-      annotations: true
+      enable_annotations: true
     session:
       default_locale: en
       lifetime: 3600
@@ -19,6 +20,3 @@ framework:
 twig:
     debug: %kernel.debug%
     strict_variables: %kernel.debug%
-
-imports:
-    - { resource: amf.yml }

@@ -1,0 +1,7 @@
+symfony origin/HEAD
+doctrine-common origin/3.0.x
+twig origin/HEAD
+monolog origin/HEAD
+metadata origin/HEAD
+zend origin/HEAD
+AMFBundle origin/HEAD

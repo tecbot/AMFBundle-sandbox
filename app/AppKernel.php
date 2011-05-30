@@ -1,15 +1,13 @@
 <?php
 
+use Symfony\Component\ClassLoader\DebugUniversalClassLoader;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\HttpKernel\Debug\ErrorHandler;
+use Symfony\Component\HttpKernel\Debug\ExceptionHandler;
 use Tecbot\AMFBundle\Amf\Kernel as AmfKernel;
 
 class AppKernel extends AmfKernel
 {
-    public function registerRootDir()
-    {
-        return __DIR__;
-    }
-
     public function registerBundles()
     {
         $bundles = array(
@@ -17,8 +15,6 @@ class AppKernel extends AmfKernel
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
-            new Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle(),
-            new FOS\FacebookBundle\FOSFacebookBundle(),
             new Tecbot\AMFBundle\TecbotAMFBundle(),
             new Acme\AmfBundle\AcmeAmfBundle(),
         );
@@ -28,6 +24,22 @@ class AppKernel extends AmfKernel
         }
 
         return $bundles;
+    }
+
+    public function init()
+    {
+        if ($this->debug) {
+            ini_set('display_errors', 1);
+            error_reporting(-1);
+
+            DebugUniversalClassLoader::enable();
+            ErrorHandler::register();
+            if ('cli' !== php_sapi_name()) {
+                ExceptionHandler::register();
+            }
+        } else {
+            ini_set('display_errors', 0);
+        }
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
